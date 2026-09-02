@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.kotlin.compose)
     id("com.google.devtools.ksp")
     id("com.google.dagger.hilt.android")
+    id("org.jetbrains.kotlin.plugin.serialization")
 }
 
 android {
@@ -46,6 +47,7 @@ dependencies {
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.androidx.navigation.compose)
     testImplementation(libs.junit)
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)
@@ -55,10 +57,16 @@ dependencies {
     debugImplementation(libs.androidx.compose.ui.tooling)
 
 
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.11.0")
+
     //Hilt
     implementation(libs.hilt.android)
     ksp(libs.hilt.android.compiler)
+    implementation(libs.androidx.hilt.lifecycle.viewmodel.compose)
 
     //App Event Tracker SDK
-    implementation("com.github.HaVoK9802:App_Event_Tracker_SDK:v1.0.0")
+    implementation("com.github.HaVoK9802:App_Event_Tracker_SDK:v1.0.1")
+//    implementation("com.github.HaVoK9802.App_Event_Tracker_SDK:app_event_tracker:1.0.1")
+
+    implementation(project(":core:analytics"))
 }

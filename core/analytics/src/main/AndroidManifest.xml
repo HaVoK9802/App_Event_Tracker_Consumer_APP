@@ -1,4 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <application>
+        <activity
+            android:name=".AnalyticsActivity"
+            android:exported="false"
+            android:label="@string/title_activity_analytics"
+            android:theme="@style/Theme.App_Event_Tracker_Consumer_APP"
+            android:windowSoftInputMode="adjustResize" />
+    </application>
+
 </manifest>
