@@ -52,6 +52,7 @@ dependencies {
 
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.11.0")
 
+    implementation(libs.androidx.compose.material.icons.extended)
 
     //App Event Tracker SDK
     implementation("com.github.HaVoK9802:App_Event_Tracker_SDK:v1.0.2")

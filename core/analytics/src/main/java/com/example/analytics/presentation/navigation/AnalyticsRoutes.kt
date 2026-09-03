@@ -13,13 +13,3 @@ sealed interface AnalyticsRoutes {
     data object Statistics: AnalyticsRoutes
 
 }
-
-@Serializable
-sealed interface QueueRoute {
-
-    @Serializable
-    data object ProcessingAndProcessedEvents : QueueRoute
-
-    @Serializable
-    data object FailedAndRetryingEvents : QueueRoute
-}

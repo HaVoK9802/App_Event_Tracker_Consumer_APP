@@ -86,21 +86,21 @@ fun EventRow(
             "Queued" -> {
                 EventStatus(
                     status = "Queued",
-                    color = Color(0xFFFFC107)
+                    color = Color(0xFF6A49AF)
                 )
             }
 
             "Processing" -> {
                 EventStatus(
                     status = "Processing",
-                    color = Color(0xFF0038FF)
+                    color = Color(0xFF3B5CC7)
                 )
             }
 
             else -> {
                 EventStatus(
                     status = "Processed",
-                    color = Color(0xFF357C2B)
+                    color = Color(0xFF43933B)
                 )
             }
         }
@@ -127,7 +127,7 @@ fun EventRowTemplate(
                 width = 1.dp,
                 color = Color.Gray
             )
-            .padding(8.dp),
+            .padding(horizontal = 16.dp, vertical = 8.dp),
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
     ) {
@@ -174,7 +174,8 @@ fun EventRowTemplate(
             text = eventStatus.status,
             color = eventStatus.color,
             style = TextStyle(
-                fontSize = 14.sp
+                fontSize = 14.sp,
+                fontWeight = FontWeight.Medium
             )
         )
 
