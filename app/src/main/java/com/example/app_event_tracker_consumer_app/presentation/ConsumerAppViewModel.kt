@@ -4,7 +4,7 @@ import android.app.Application
 import androidx.compose.runtime.mutableStateListOf
 import androidx.lifecycle.ViewModel
 import com.example.app_event_tracker_consumer_app.ConsumerApplication
-import com.example.app_event_tracker_consumer_app.domain.models.CartItem
+import com.example.app_event_tracker_consumer_app.presentation.models.CartItem
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 

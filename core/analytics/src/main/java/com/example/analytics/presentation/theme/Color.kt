@@ -1,4 +1,4 @@
-package com.example.analytics.ui.theme
+package com.example.analytics.presentation.theme
 
 import androidx.compose.ui.graphics.Color
 

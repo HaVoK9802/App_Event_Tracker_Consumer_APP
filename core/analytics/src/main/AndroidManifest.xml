@@ -3,7 +3,7 @@
 
     <application>
         <activity
-            android:name=".AnalyticsActivity"
+            android:name=".presentation.AnalyticsActivity"
             android:exported="false"
             android:label="@string/title_activity_analytics"
             android:theme="@style/Theme.App_Event_Tracker_Consumer_APP"

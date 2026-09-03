@@ -26,7 +26,6 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -35,12 +34,11 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
-import androidx.navigation.NavDestination
 import androidx.navigation.NavDestination.Companion.hasRoute
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.navigation
-import com.example.analytics.AnalyticsActivity
-import com.example.app_event_tracker_consumer_app.domain.models.CartItem
+import com.example.analytics.presentation.AnalyticsActivity
+import com.example.app_event_tracker_consumer_app.presentation.models.CartItem
 import com.example.app_event_tracker_consumer_app.presentation.ConsumerAppViewModel
 import com.example.app_event_tracker_consumer_app.presentation.navigation.AppRoutes
 import com.example.app_event_tracker_consumer_app.presentation.navigation.PurchaseRoute
@@ -273,21 +271,5 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    App_Event_Tracker_Consumer_APPTheme {
-        Greeting("Android")
     }
 }
