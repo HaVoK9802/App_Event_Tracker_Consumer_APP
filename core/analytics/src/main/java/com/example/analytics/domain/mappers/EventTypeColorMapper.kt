@@ -4,24 +4,52 @@ import androidx.compose.ui.graphics.Color
 import com.example.app_event_tracker.domain.models.AppEventType
 
 
-fun AppEventType.toColor(): Color {
+fun AppEventType.toColor(isDark: Boolean = false): Color {
     return when (this) {
         is AppEventType.StrictlyOnceEvent.Install -> {
-            Color(0xFF4A8D5A)
+            if (isDark) {
+                Color(0xFF305D39)
+            } else {
+                Color(0xFF539D56)
+            }
         }
 
         is AppEventType.OncePerSessionEvent.Visit -> {
-            Color(0xFF799AF6)
+
+            if (isDark) {
+                Color(0xFF415788)
+            } else {
+                Color(0xFF799AF6)
+            }
+
 
         }
 
+        is AppEventType.OncePerSessionEvent.ScreenVisit -> {
+            if (isDark) {
+                Color(0xFF93384D)
+            } else {
+                Color(0xFFF55E85)
+            }
+        }
+
         is AppEventType.MultipleEvent.AddToCart -> {
-            Color(0xFF63558C)
+
+
+            if (isDark) {
+                Color(0xFF4E436E)
+            } else {
+                Color(0xFF63558C)
+            }
 
         }
 
         is AppEventType.MultipleEvent.Purchase -> {
-            Color(0xFFE0CB7C)
+            if (isDark) {
+                Color(0xFF867A49)
+            } else {
+                Color(0xFFE0CB7C)
+            }
         }
 
         is AppEventType.Unknown -> Color.Red

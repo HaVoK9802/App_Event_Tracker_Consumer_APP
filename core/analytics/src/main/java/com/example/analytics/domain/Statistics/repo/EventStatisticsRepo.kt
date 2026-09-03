@@ -10,6 +10,8 @@ interface EventStatisticsRepo {
 
     suspend fun getTotalVisits(): Int
 
+    suspend fun getTotalUniqueScreenVisits(): Int
+
     suspend fun getTotalItemPurchases(): Int
 
 

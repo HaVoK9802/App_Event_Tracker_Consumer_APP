@@ -58,19 +58,23 @@ fun StatTable(
              StatTableRow()
              StatTableRow(
                  collectiveEventStatistics.installs,
-                 "Install"
+                 AppEventType.INSTALL
              )
              StatTableRow(
                  collectiveEventStatistics.visits,
-                 "Visit"
+                 AppEventType.VISIT
+             )
+             StatTableRow(
+                 collectiveEventStatistics.screenVisits,
+                 AppEventType.SCREEN_VISIT
              )
              StatTableRow(
                  collectiveEventStatistics.itemsAddedToCart,
-                 "AddToCart"
+                 AppEventType.ADD_TO_CART
              )
              StatTableRow(
                  collectiveEventStatistics.purchases,
-                 "Purchase"
+                 AppEventType.PURCHASE
              )
          }
      }
@@ -100,7 +104,7 @@ fun StatTableRow(
             verticalAlignment = Alignment.CenterVertically
         ) {
             Row(
-                modifier = Modifier.weight(1.5f),
+                modifier = Modifier.weight(2f),
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 if(appEventType!=null && eventStat!=null) {
@@ -116,17 +120,26 @@ fun StatTableRow(
                 Text(
                     modifier = Modifier.padding(start = 8.dp),
                     text = appEventType?:"Event",
+                    style = TextStyle(
+                        fontSize = 14.sp
+                    )
                 )
             }
             Text(
-                modifier = Modifier.weight(1.25f),
-                text = eventStat?.count?.toString() ?: "Count"
+                modifier = Modifier.weight(1f),
+                text = eventStat?.count?.toString() ?: "Count",
+                style = TextStyle(
+                    fontSize = 14.sp
+                )
             )
             Text(
-                modifier = Modifier.weight(1.25f),
+                modifier = Modifier.weight(1f),
                 text = eventStat?.percentage?.let {
                     "%.2f".format(it) + " %"
-                }?:"Percentage"
+                }?:"Percentage",
+                style = TextStyle(
+                    fontSize = 14.sp
+                )
             )
         }
 

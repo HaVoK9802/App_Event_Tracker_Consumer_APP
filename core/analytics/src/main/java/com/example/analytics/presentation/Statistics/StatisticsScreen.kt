@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.RestartAlt
 import androidx.compose.material3.Icon
@@ -19,6 +18,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.example.analytics.domain.Statistics.models.CollectiveEventStatistics
+import com.example.app_event_tracker.domain.models.AppEventType
 
 @Composable
 fun StatisticsScreen(
@@ -28,12 +28,14 @@ fun StatisticsScreen(
 ) {
     Column(
         modifier = modifier.fillMaxSize()
-    ){
+    ) {
         Row(
-            modifier = Modifier.height(48.dp).fillMaxWidth(),
+            modifier = Modifier
+                .height(48.dp)
+                .fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
-        ){
+        ) {
             Text(
                 text = "Statistics",
                 textAlign = TextAlign.Start
@@ -46,22 +48,61 @@ fun StatisticsScreen(
                 Icon(
                     imageVector = Icons.Outlined.RestartAlt,
                     contentDescription = "Retry",
-                    tint =  MaterialTheme.colorScheme.primary
+                    tint = MaterialTheme.colorScheme.primary
                 )
             }
         }
-        LazyColumn(
+        Column(
             modifier = Modifier.fillMaxSize(),
             verticalArrangement = Arrangement.spacedBy(8.dp),
         ) {
 
-
-            item {
-                StatTable(
-                    modifier = Modifier.fillMaxWidth(),
-                    collectiveEventStatistics = collectiveEventStatistics
-                )
+            Column() {
+                Row {
+                    EventStatCardTypeOne(
+                        modifier = Modifier.weight(1f),
+                        statName = "Total Events Processed",
+                        eventCount = collectiveEventStatistics.totalProcessedEvents?.count ?: 0
+                    )
+                    EventStatCardTypeOne(
+                        modifier = Modifier.weight(1f),
+                        statName = """
+                            Total Visits
+                            (Unique Session)
+                        """.trimIndent(),
+                        eventCount = collectiveEventStatistics.visits?.count ?: 0
+                    )
+                }
+                Row {
+                    EventStatCardTypeTwo(
+                        modifier = Modifier.weight(1f),
+                        eventName = AppEventType.INSTALL,
+                        eventCount = collectiveEventStatistics.installs?.count ?: 0
+                    )
+                    EventStatCardTypeTwo(
+                        modifier = Modifier.weight(1f),
+                        eventName = AppEventType.SCREEN_VISIT,
+                        eventCount = collectiveEventStatistics.screenVisits?.count ?: 0
+                    )
+                }
+                Row {
+                    EventStatCardTypeTwo(
+                        modifier = Modifier.weight(1f),
+                        eventName = AppEventType.ADD_TO_CART,
+                        eventCount = collectiveEventStatistics.itemsAddedToCart?.count ?: 0
+                    )
+                    EventStatCardTypeTwo(
+                        modifier = Modifier.weight(1f),
+                        eventName = AppEventType.PURCHASE,
+                        eventCount = collectiveEventStatistics.purchases?.count ?: 0
+                    )
+                }
             }
+
+            StatTable(
+                modifier = Modifier.fillMaxWidth(),
+                collectiveEventStatistics = collectiveEventStatistics
+            )
         }
     }
 }

@@ -21,6 +21,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDecoration
@@ -56,12 +57,10 @@ class AnalyticsActivity : ComponentActivity() {
                 val isQueueScreen = navBackStackEntry?.destination?.hasRoute<AnalyticsRoutes.QueuedEvents>() == true
                 val isStatisticsScreen = navBackStackEntry?.destination?.hasRoute<AnalyticsRoutes.Statistics>() == true
                 Scaffold(modifier = Modifier
-                    .fillMaxSize()
-                    .statusBarsPadding()
-                    .navigationBarsPadding(),
+                    .fillMaxSize(),
                     topBar = {
                         Row(
-                            modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp).padding(top = 24.dp).padding(bottom = 16.dp),
+                            modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp).padding(top = 24.dp).padding(bottom = 16.dp).statusBarsPadding(),
                             verticalAlignment = Alignment.CenterVertically,
                             horizontalArrangement = Arrangement.Start
                         ) {
@@ -75,7 +74,9 @@ class AnalyticsActivity : ComponentActivity() {
                         }
                     },
                     bottomBar = {
-                        Column {
+                        Column(
+                            modifier = Modifier.navigationBarsPadding()
+                        ) {
                             HorizontalDivider(
                                 modifier = Modifier.fillMaxWidth(),
                                 thickness = 1.dp

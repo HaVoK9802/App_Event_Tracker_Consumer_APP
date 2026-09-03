@@ -21,13 +21,11 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SecondaryTabRow
 import androidx.compose.material3.Tab
 import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextDecoration
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.compose.NavHost
@@ -83,50 +81,54 @@ class MainActivity : ComponentActivity() {
                 }
                 Scaffold(
                     modifier = Modifier
-                        .fillMaxSize()
-                        .statusBarsPadding()
-                        .navigationBarsPadding(),
+                        .fillMaxSize(),
                     bottomBar = {
-                        if (!isLoginScreen) {
-                            HorizontalDivider(
-                                modifier = Modifier.fillMaxWidth(),
-                                thickness = 1.dp
-                            )
-                            Row(
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .height(64.dp),
-                                horizontalArrangement = Arrangement.SpaceAround,
-                                verticalAlignment = Alignment.CenterVertically
-                            ) {
-                                Text(
-                                    modifier = Modifier.clickable(
-                                        enabled = true,
-                                        onClick = {
-                                            navController.navigateAndClearBackStack(AppRoutes.PurchaseGraph)
-                                        }
-                                    ),
-                                    text = "Purchase Screens",
-                                    textDecoration = if (isPurchaseGraph) TextDecoration.Underline else TextDecoration.None
+                        Column(
+                            modifier = Modifier.navigationBarsPadding()
+                        ){
+                            if (!isLoginScreen) {
+                                HorizontalDivider(
+                                    modifier = Modifier.fillMaxWidth(),
+                                    thickness = 1.dp
+                                )
+                                Row(
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .height(64.dp),
+                                    horizontalArrangement = Arrangement.SpaceAround,
+                                    verticalAlignment = Alignment.CenterVertically
+                                ) {
+                                    Text(
+                                        modifier = Modifier.clickable(
+                                            enabled = true,
+                                            onClick = {
+                                                navController.navigateAndClearBackStack(AppRoutes.PurchaseGraph)
+                                            }
+                                        ),
+                                        text = "Purchase Screens",
+                                        textDecoration = if (isPurchaseGraph) TextDecoration.Underline else TextDecoration.None
 
-                                )
-                                Text(
-                                    modifier = Modifier.clickable(
-                                        enabled = true,
-                                        onClick = {
-                                            navController.navigateAndClearBackStack(AppRoutes.ItemCartScreen)
-                                        }
-                                    ),
-                                    text = "Item Cart",
-                                    textDecoration = if (isItemCartScreen) TextDecoration.Underline else TextDecoration.None
-                                )
+                                    )
+                                    Text(
+                                        modifier = Modifier.clickable(
+                                            enabled = true,
+                                            onClick = {
+                                                navController.navigateAndClearBackStack(AppRoutes.ItemCartScreen)
+                                            }
+                                        ),
+                                        text = "Item Cart",
+                                        textDecoration = if (isItemCartScreen) TextDecoration.Underline else TextDecoration.None
+                                    )
+                                }
                             }
                         }
 
                     },
                     topBar = {
                         if (!isLoginScreen) {
-                            Column {
+                            Column(
+                                modifier = Modifier.statusBarsPadding()
+                            ){
                                 Row(
                                     modifier = Modifier
                                         .fillMaxWidth()
@@ -136,7 +138,7 @@ class MainActivity : ComponentActivity() {
                                     verticalAlignment = Alignment.CenterVertically
                                 ) {
                                     Text(
-                                        text = if(isPurchaseGraph) "Purchase Products" else "Your Cart",
+                                        text = if (isPurchaseGraph) "Purchase Products" else "Your Cart",
                                         fontSize = 24.sp
                                     )
                                     Button(
@@ -227,7 +229,7 @@ class MainActivity : ComponentActivity() {
 
 
                         composable<AppRoutes.ItemCartScreen> {
-                            appViewModel.navigateEvent("Item Cart")
+                            appViewModel.screenVisitEvent("Item Cart")
                             ItemsInCartScreen(
                                 appViewModel.sharedCart,
                                 onPurchaseCartItem = {
@@ -240,9 +242,9 @@ class MainActivity : ComponentActivity() {
                             startDestination = PurchaseRoute.Screen1
                         ) {
 
-
                             composable<PurchaseRoute.Screen1> {
-                                appViewModel.navigateEvent("Purchase Screen 2")
+                                appViewModel.visitEvent()
+                                appViewModel.screenVisitEvent("Purchase Screen 2")
                                 Screen1(
                                     onItemClick = {
                                         appViewModel.addItemToCart(
@@ -255,7 +257,7 @@ class MainActivity : ComponentActivity() {
                             }
 
                             composable<PurchaseRoute.Screen2> {
-                                appViewModel.navigateEvent("Purchase Screen 1")
+                                appViewModel.screenVisitEvent("Purchase Screen 1")
                                 Screen2(
                                     onItemClick = {
                                         appViewModel.addItemToCart(

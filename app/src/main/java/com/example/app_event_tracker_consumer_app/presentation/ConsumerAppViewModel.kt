@@ -3,6 +3,7 @@ package com.example.app_event_tracker_consumer_app.presentation
 import android.app.Application
 import androidx.compose.runtime.mutableStateListOf
 import androidx.lifecycle.ViewModel
+import com.example.app_event_tracker.domain.models.AppEventType
 import com.example.app_event_tracker_consumer_app.ConsumerApplication
 import com.example.app_event_tracker_consumer_app.presentation.models.CartItem
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -26,7 +27,7 @@ class ConsumerAppViewModel @Inject constructor(
         (application as ConsumerApplication).appEventTracker.trackEvent(
             """
                     {
-                      "event_type": "add_to_cart",
+                      "event_type": "${AppEventType.ADD_TO_CART}",
                       "item_id": "${item.id}"
                     }
                     """.trimIndent()
@@ -40,18 +41,27 @@ class ConsumerAppViewModel @Inject constructor(
         (application as ConsumerApplication).appEventTracker.trackEvent(
             """
                     {
-                      "event_type": "purchase",
+                      "event_type": "${AppEventType.PURCHASE}",
                       "item_id": "${item.id}"
                     }
                     """.trimIndent()
         )
     }
 
-    fun navigateEvent(screenName: String) {
+    fun visitEvent() {
         (application as ConsumerApplication).appEventTracker.trackEvent(
             """
                     {
-                      "event_type": "visit",
+                      "event_type": "${AppEventType.VISIT}"
+                    }
+                    """.trimIndent()
+        )
+    }
+    fun screenVisitEvent(screenName: String) {
+        (application as ConsumerApplication).appEventTracker.trackEvent(
+            """
+                    {
+                      "event_type": "${AppEventType.SCREEN_VISIT}",
                       "screen_name": "$screenName"
                     }
                     """.trimIndent()

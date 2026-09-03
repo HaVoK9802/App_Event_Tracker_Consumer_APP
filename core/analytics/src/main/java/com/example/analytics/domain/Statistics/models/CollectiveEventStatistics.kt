@@ -6,6 +6,7 @@ data class CollectiveEventStatistics(
     val totalProcessedEvents: EventStat? = null,
     val installs: EventStat? = null,
     val visits: EventStat? = null,
+    val screenVisits: EventStat? = null,
     val itemsAddedToCart: EventStat? = null,
     val purchases: EventStat? = null
 )

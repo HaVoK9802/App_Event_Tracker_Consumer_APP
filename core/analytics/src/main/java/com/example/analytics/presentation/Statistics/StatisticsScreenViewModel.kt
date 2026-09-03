@@ -30,6 +30,7 @@ class StatisticsScreenViewModel @Inject constructor(
             val totalProcessedEvents = eventStatisticsRepo.getTotalProcessedEvents()
             val totalInstalls = eventStatisticsRepo.getTotalInstalls()
             val totalVisits = eventStatisticsRepo.getTotalVisits()
+            val totalUniqueScreenVisits = eventStatisticsRepo.getTotalUniqueScreenVisits()
             val totalCartItemsAdded = eventStatisticsRepo.getTotalCartItemsAdded()
             val totalItemPurchases = eventStatisticsRepo.getTotalItemPurchases()
 
@@ -45,6 +46,10 @@ class StatisticsScreenViewModel @Inject constructor(
                 visits = EventStat(
                     count = totalVisits,
                     percentage = (totalVisits.toFloat()/totalProcessedEvents)*100
+                ),
+                screenVisits = EventStat(
+                    count = totalUniqueScreenVisits,
+                    percentage = (totalUniqueScreenVisits.toFloat()/totalProcessedEvents)*100
                 ),
                 itemsAddedToCart = EventStat(
                     count = totalCartItemsAdded,

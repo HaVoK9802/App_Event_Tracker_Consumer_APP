@@ -55,6 +55,6 @@ dependencies {
     implementation(libs.androidx.compose.material.icons.extended)
 
     //App Event Tracker SDK
-    implementation("com.github.HaVoK9802:App_Event_Tracker_SDK:v1.0.2")
-//    implementation("com.github.HaVoK9802.App_Event_Tracker_SDK:app_event_tracker:1.0.2")
+    implementation("com.github.HaVoK9802:App_Event_Tracker_SDK:v1.1.0")
+//    implementation("com.github.HaVoK9802.App_Event_Tracker_SDK:app_event_tracker:1.1.0")
 }
